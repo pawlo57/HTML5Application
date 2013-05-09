@@ -6,20 +6,84 @@ and open the template in the editor.
 <html>
     <head>
         <script type="text/javascript">
-            var string1 = "String one";
-            var string2 = 'String two';
+            window.onload = function(){
+                
+                //2.2 Substring exists
+                var cookbookString = new Array();
+                
+                cookbookString[0] = "Pawel's Cooking Book";
+                cookbookString[1] = "Sam's Cookbook";
+                cookbookString[2] = "KavaScript CookBook";
+                cookbookString[3] = "JavaScript CookCook";
+                
+                var pattern = /Cook.*Book/i;
+                
+                for(var i = 0; i < cookbookString.length; i++){
+                    var resultPattern = cookbookString[i] + " " + 
+                            pattern.test(cookbookString[i],i) + "<br />";
+                    
+                    document.getElementById("result").innerHTML += resultPattern;
+                }
+            };
             
-            var string3 = string1 + string2;
-            
-            var string4 = "".concat(string1,string2,string3);
-            
-            
+            function print(arg){
+                document.getElementById("result").innerHTML = arg + "\n";
+            }
          
+             //2.3 Validating
+            function checkSSn(){ 
+                var ssn = document.getElementById("input").value;
+                var resultInfo = document.getElementById("result");
+                var pattern = /^\d{3}-\d{2}-\d{4}$/;
+                
+                if(ssn.match(pattern)){
+                    resultInfo.innerHTML += "Ok";
+                }
+                else{
+                    resultInfo.innerHTML += "Not Ok";
+                }
+            }
+            
+            //2.4 All instances of pattern
+            function findAllPattern(){
+                var searchString = "Now is the time and this is the time and that is the time";
+                var pattern = /t\w*e/g;
+                var matcharray;
+                
+                var str = "";
+                
+                while((matchArray = pattern.exec(searchString)) != null){
+                    str += "at " + matchArray.index + " we found " + matchArray[0] + "\n";
+                }
+                
+                document.getElementById("result").innerHTML = str;
+            }
+            
+            //2.6 Replecing patterns with new Strings
+            function replaceAllSubstrings(){
+                var searchString = new String("Now is the time, this is the time");
+                var re = /t\w{2}e/g;
+                
+                var replacment = searchString.replace(re,"place");
+                
+                print(replacment);
+            }
+          
         </script>
         <title>JavaScript Learn</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <div id="string3">TODO write content</div>
+        <div>
+            <input id="input" style="width: 200px; background-color: yellow"/><br/>
+            <button id="button" onclick="checkSSn();">Check SSn</button><br />
+            <button id="searchPatternButton" onclick="findAllPattern();">Search Pattern</button><br />
+            <button onclick="replaceAllSubstrings();">Replace Pattern</button>
+        </div>
+        <div>
+            <label>Results:</label><br/>
+            <textarea id="result" style="width: 200px; background-color: 
+                      threedlightshadow; height: 200px"></textarea>
+        </div>
     </body>
 </html>
