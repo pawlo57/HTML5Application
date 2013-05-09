@@ -13,7 +13,50 @@ and open the template in the editor.
             
             var string4 = "".concat(string1,string2,string3);
             
+            //adding string and different type
+            var numberValue = 23.45;
+            var total = "And the total is " + numberValue;
             
+            //string object and string literal
+            var stringObject = new String("The string object");
+            var stringLiteral = "A literal";
+            var stringObjectAndLiteral = stringObject + stringLiteral;
+            
+            //string compare
+            if(string1 == "Ok"){
+                alert("String is Ok");
+            }
+            
+            window.onload = function() {
+                var keywordList = "Pawe,Gawel";
+                
+                var arrayList = keywordList.split(",");
+                var resultString = '';
+                for(var i = 0; i < arrayList.length; i++){
+                    resultString += "keyword: " + arrayList[i] + "<br />";
+                }
+                
+                var block = document.getElementById("string3");
+                
+                block.innerHTML = resultString;
+                
+                //special characters
+                var specialString = "<p>This page \u00A9 Shelly Powers </p>";
+                document.getElementById("specialCharacters").innerHTML = specialString;
+            };
+            
+            function buttonClick(){
+                var textBox = document.getElementById("text");
+                var lines = textBox.value.split("\n");
+                
+                var resultText = "<p>&nbsp&nbsp&nbsp&nbsp";
+                for(var i = 0; i < lines.length; i++){
+                    resultText += lines[i] + "<br />";
+                }
+                resultText += "</p>";
+                
+                document.getElementById("result").innerHTML = resultText;
+            }
          
         </script>
         <title>JavaScript Learn</title>
@@ -21,5 +64,9 @@ and open the template in the editor.
     </head>
     <body>
         <div id="string3">TODO write content</div>
+        <div id="specialCharacters"></div>
+        <textarea id="text">Type new text</textarea>
+        <button id="button" onclick="buttonClick();">Click Me</button>
+        <div id="result"></div>
     </body>
 </html>
